@@ -16,22 +16,11 @@
             <property name="height-request">40</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="input-purpose">name</property>
           </object>
           <packing>
             <property name="x">100</property>
             <property name="y">100</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="idade_entry">
-            <property name="width-request">250</property>
-            <property name="height-request">40</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-          </object>
-          <packing>
-            <property name="x">100</property>
-            <property name="y">170</property>
           </packing>
         </child>
         <child>
@@ -40,6 +29,8 @@
             <property name="height-request">40</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="max-length">15</property>
+            <property name="input-purpose">phone</property>
           </object>
           <packing>
             <property name="x">100</property>
@@ -124,6 +115,96 @@
           <packing>
             <property name="x">190</property>
             <property name="y">355</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="idade_entry">
+            <property name="width-request">250</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="max-length">3</property>
+            <property name="input-purpose">digits</property>
+          </object>
+          <packing>
+            <property name="x">100</property>
+            <property name="y">170</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="janela_inserir_done">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="layout_inserir_done">
+        <property name="width-request">400</property>
+        <property name="height-request">200</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkButton" id="botao_inserir_done">
+            <property name="label" translatable="yes">Done</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_inserir_done">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Cliente registrado com sucesso.</property>
+          </object>
+          <packing>
+            <property name="x">96</property>
+            <property name="y">48</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="janela_inserir_erro">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="layout_inserir_erro">
+        <property name="width-request">400</property>
+        <property name="height-request">200</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkButton" id="botao_inserir_erro">
+            <property name="label" translatable="yes">Done</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Erro ao registrar o cliente.</property>
+          </object>
+          <packing>
+            <property name="x">116</property>
+            <property name="y">48</property>
           </packing>
         </child>
       </object>
