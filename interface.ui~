@@ -16,23 +16,11 @@
             <property name="height-request">40</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="input-purpose">name</property>
           </object>
           <packing>
             <property name="x">100</property>
             <property name="y">100</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="idade_entry">
-            <property name="width-request">250</property>
-            <property name="height-request">40</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="input-purpose">digits</property>
-          </object>
-          <packing>
-            <property name="x">100</property>
-            <property name="y">170</property>
           </packing>
         </child>
         <child>
@@ -41,6 +29,7 @@
             <property name="height-request">40</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="max-length">15</property>
             <property name="input-purpose">phone</property>
           </object>
           <packing>
@@ -126,6 +115,20 @@
           <packing>
             <property name="x">190</property>
             <property name="y">355</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="idade_entry">
+            <property name="width-request">250</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="max-length">3</property>
+            <property name="input-purpose">digits</property>
+          </object>
+          <packing>
+            <property name="x">100</property>
+            <property name="y">170</property>
           </packing>
         </child>
       </object>
@@ -269,8 +272,177 @@
             <property name="width-chars">37</property>
           </object>
           <packing>
-            <property name="x">254</property>
-            <property name="y">83</property>
+            <property name="x">288</property>
+            <property name="y">80</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="janela_remover">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="layout_remover">
+        <property name="width-request">400</property>
+        <property name="height-request">200</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkComboBoxText" id="escolha_janela_remover">
+            <property name="width-request">120</property>
+            <property name="height-request">35</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <items>
+              <item translatable="yes">ID</item>
+              <item translatable="yes">Telefone</item>
+            </items>
+          </object>
+          <packing>
+            <property name="x">23</property>
+            <property name="y">77</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_janela_remover">
+            <property name="width-request">200</property>
+            <property name="height-request">35</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+          </object>
+          <packing>
+            <property name="x">184</property>
+            <property name="y">77</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_janela_remover_escolha">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Com o que deseja procurar?</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_janela_remover_info">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Digite o ID/Telefone aqui:</property>
+          </object>
+          <packing>
+            <property name="x">219</property>
+            <property name="y">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="botao_janela_remover_remover">
+            <property name="label" translatable="yes">Remover</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="botao_janela_remover_cancelar">
+            <property name="label" translatable="yes">Cancelar</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">190</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="janela_remover_done">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="layout_janela_remover_done">
+        <property name="width-request">400</property>
+        <property name="height-request">200</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel" id="label_janela_remover_done">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Cliente removido com sucesso.</property>
+          </object>
+          <packing>
+            <property name="x">118</property>
+            <property name="y">52</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="botao_janela_remover_done">
+            <property name="label" translatable="yes">Done</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="janela_remover_erro">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed" id="layout_janela_remover_erro">
+        <property name="width-request">400</property>
+        <property name="height-request">200</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkButton" id="botao_janela_remover_erro">
+            <property name="label" translatable="yes">Done</property>
+            <property name="width-request">100</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="x">295</property>
+            <property name="y">155</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_janela_remover_erro">
+            <property name="width-request">100</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Erro ao remover cliente/ Cliente não existe.</property>
+          </object>
+          <packing>
+            <property name="x">88</property>
+            <property name="y">52</property>
           </packing>
         </child>
       </object>
