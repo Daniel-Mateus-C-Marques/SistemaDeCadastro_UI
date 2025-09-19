@@ -6,6 +6,8 @@
 
 sqlite3 *db;
 char *err_msg = 0;
+GtkListStore *store;
+GtkTreeIter iter;
 
 void botao_inserir_erro_clicked(GtkButton *button, gpointer user_data);
 void botao_inserir_done_clicked(GtkButton *button, gpointer user_data);
@@ -16,6 +18,7 @@ void botao_janela_remover_done_clicked(GtkButton *button, gpointer user_data);
 void botao_janela_remover_remover_clicked(GtkButton *button, gpointer user_data);
 void botao_janela_remover_cancelar_clicked(GtkButton *button, gpointer user_data);
 void botao_remover_clicked(GtkButton *button, gpointer user_data);
+void botao_listar_clicked(GtkButton *button, gpointer user_data);
 
 int main(int argc, char *argv[]){
     
@@ -43,6 +46,7 @@ int main(int argc, char *argv[]){
 
     g_signal_connect(botao_inserir, "clicked", G_CALLBACK(botao_inserir_clicked), NULL);
     g_signal_connect(botao_remover, "clicked", G_CALLBACK(botao_remover_clicked), NULL);
+    g_signal_connect(botao_listar, "clicked", G_CALLBACK(botao_listar_clicked), NULL);
     gtk_builder_connect_signals(builder, NULL);
 
     gtk_widget_show_all(janela_principal);
@@ -184,4 +188,58 @@ void botao_remover_clicked(GtkButton *button, gpointer user_data){
     gtk_widget_show_all(janela_remover);
     g_signal_connect(botao_janela_remover_remover, "clicked", G_CALLBACK(botao_janela_remover_remover_clicked), builder);
     g_signal_connect(botao_janela_remover_cancelar, "clicked", G_CALLBACK(botao_janela_remover_cancelar_clicked), builder);
+}
+//Função remover (FIM)
+
+//Função inserir (INICIO)
+int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+    // Adiciona linha no ListStore
+    gtk_list_store_append(store, &iter);
+    gtk_list_store_set(store, &iter,
+                       0, atoi(argv[0]), // ID
+                       1, argv[1],// Nome
+                       2, atoi(argv[2]), //Idade
+                       3, atoi(argv[3]), //Telefone
+                       -1);
+    return 0;
+}
+
+
+void botao_listar_clicked(GtkButton *button, gpointer user_data){
+    GtkBuilder *builder = gtk_builder_new_from_file("interface.ui");
+    GtkWidget *janela_listar = GTK_WIDGET(gtk_builder_get_object(builder, "janela_listar"));
+    GtkWidget *tree_view_pessoas = GTK_WIDGET(gtk_builder_get_object(builder, "tree_view_pessoas"));
+    GtkCellRenderer *renderer;
+    GtkTreeViewColumn *column;
+    store = gtk_list_store_new(4, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_INT);
+
+    const char *sql = "SELECT * FROM clientes;";
+    if (sqlite3_exec(db, sql, callback, 0, &err_msg) != SQLITE_OK) {
+        fprintf(stderr, "Erro SQL: %s\n", err_msg);
+        sqlite3_free(err_msg);
+    }
+    
+    gtk_tree_view_set_model(GTK_TREE_VIEW(tree_view_pessoas), GTK_TREE_MODEL(store));
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes("ID", renderer, "text", 0, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view_pessoas), column);
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes("Nome", renderer, "text", 1, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view_pessoas), column);
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes("Idade", renderer, "text", 2, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view_pessoas), column);
+
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes("Telefone", renderer, "text", 3, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view_pessoas), column);
+    
+    g_object_unref(store);
+
+    
+    gtk_widget_show_all(janela_listar);
+    
 }
